@@ -1,3 +1,4 @@
+// sort array in ascending order
 pub fn quick_sort(a: &Vec<i32>) -> Vec<i32> {
     // copy the array to prevent from modifying the original array
     let mut new_array = a.clone();

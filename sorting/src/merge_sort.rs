@@ -1,3 +1,4 @@
+// sort array in ascending order
 pub fn merge_sort(a: &Vec<i32>) -> Vec<i32> {
     let mut new_array = a.clone();
     mergesort_recursion(&mut new_array);
