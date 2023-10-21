@@ -1,17 +1,21 @@
 mod bfs;
+mod queue;
 
 use bfs::bfs;
 
 fn main() {
-    let mut vec_2d: Vec<Vec<i32>> = Vec::new();
+    let mut vec_2d: Vec<Vec<usize>> = Vec::new();
 
     vec_2d = vec![
-        vec![1,2,3],
-        vec![4,5,6],
-        vec![7,8,9]
+        vec![0, 0, 0, 0, 0, 0],
+        vec![0, 0, 3, 0, 0, 0],
+        vec![0, 0, 1, 0, 3, 0],
+        vec![0, 0, 0, 3, 0, 6],
+        vec![0, 0, 3, 0, 3, 2],
     ];
 
-    bfs(&vec_2d);
+    let w = bfs(&vec_2d, (2, 2));
 
-    println!("Hello, world!");
+    println!("{:?}", w.now);
+    println!("{:?}", w.record);
 }
