@@ -23,13 +23,11 @@ fn main() -> io::Result<()> {
 
     while maze_index < lines.len() {
         let scale = &lines[maze_index];
-        if scale.len() != 2 {
-            panic!("input invalid")
-        }
 
-        let y_length = scale.chars().nth(0).unwrap().to_digit(10).unwrap();
+        let parts = scale.split(" ").collect::<Vec<&str>>();
+        let y_length: i32 = parts[0].parse().unwrap();
         let y_bound = y_length + 1;
-        let x_length = scale.chars().nth(1).unwrap().to_digit(10).unwrap();
+        let x_length: i32 = parts[1].parse().unwrap();
         let x_bound = x_length + 1;
 
         let mut maze: Vec<Vec<usize>> = Vec::with_capacity(y_length as usize);
@@ -47,25 +45,26 @@ fn main() -> io::Result<()> {
         let mut start: (usize, usize) = (0, 0);
         for i in 0..y_length {
             let maze_row_index: usize = (i + 1) as usize;
-            let row = &lines[maze_index+maze_row_index];
+            let row_with_space = &lines[maze_index+maze_row_index];
+            let row_vec = row_with_space.split(" ").collect::<Vec<&str>>();
 
-            for index in 0..row.len() {
+            for index in 0..row_vec.len() {
                 if index % 2 == 0 {
-                    let x_char_index= row.chars().nth(index).unwrap();
-                    if x_char_index == '0' {
+                    let x_char_index = row_vec[index];
+                    if x_char_index == "0" {
                         continue
                     }
 
-                    let x_element = row.chars().nth(index+1).unwrap();
+                    let x_element = row_vec[index+1];
 
-                    let x_index : usize = x_char_index.to_digit(10).unwrap() as usize;
+                    let x_index : usize = x_char_index.parse().unwrap();
 
-                    if x_element == 'x' {
+                    if x_element == "x" {
                         maze[maze_row_index][x_index] = 3;
-                    } else if x_element == 's' {
+                    } else if x_element == "s" {
                         maze[maze_row_index][x_index] = 1;
                         start = (maze_row_index as usize, x_index as usize);
-                    } else if x_element == 't' {
+                    } else if x_element == "t" {
                         maze[maze_row_index][x_index] = 2;
                     }
                 }
