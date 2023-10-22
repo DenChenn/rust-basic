@@ -1,4 +1,3 @@
-use std::env::current_exe;
 use crate::queue::Queue;
 
 pub struct Walk {
@@ -24,8 +23,6 @@ pub fn bfs(maze: &Vec<Vec<usize>>, start: (usize, usize)) -> Walk {
     let y_length = maze.len();
     let x_length = maze[0].len();
 
-    println!("y length {:?}", y_length);
-    println!("x length {:?}", x_length);
 
     // initialize a visited 2D vector for storing visited position of maze
     let mut visited: Vec<Vec<bool>> = Vec::with_capacity(y_length);
