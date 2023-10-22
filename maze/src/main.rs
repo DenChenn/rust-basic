@@ -22,6 +22,7 @@ fn main() -> io::Result<()> {
     let mut maze_index = 0;
 
     while maze_index < lines.len() {
+        // get the size of our maze
         let scale = &lines[maze_index];
 
         let parts = scale.split(" ").collect::<Vec<&str>>();
@@ -42,6 +43,10 @@ fn main() -> io::Result<()> {
         }
 
         // insert element
+        // 0 represent available position
+        // 1 represent start
+        // 2 represent destination
+        // 3 represent obstacles
         let mut start: (usize, usize) = (0, 0);
         for i in 0..y_length {
             let maze_row_index: usize = (i + 1) as usize;

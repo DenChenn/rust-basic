@@ -61,21 +61,25 @@ pub fn bfs(maze: &Vec<Vec<usize>>, start: (usize, usize)) -> Walk {
             let mut new_record = current.record.clone();
             new_record.push((y - 1, x));
             q.push_back(Walk{now: (y - 1, x), record: new_record});
+            visited[y-1][x] = true;
         }
         if y + 1 < y_length && maze[y + 1][x] != 3 && !visited[y + 1][x] {
             let mut new_record = current.record.clone();
             new_record.push((y + 1, x));
             q.push_back(Walk{now: (y + 1, x), record: new_record});
+            visited[y+1][x] = true;
         }
         if x - 1 > 0 && maze[y][x - 1] != 3 && !visited[y][x - 1] {
             let mut new_record = current.record.clone();
             new_record.push((y, x - 1));
             q.push_back(Walk{now: (y, x - 1), record: new_record});
+            visited[y][x-1] = true;
         }
         if x + 1 < x_length && maze[y][x + 1] != 3 && !visited[y][x + 1] {
             let mut new_record = current.record.clone();
             new_record.push((y, x + 1));
             q.push_back(Walk{now: (y, x + 1), record: new_record});
+            visited[y][x+1] = true;
         }
     }
 
